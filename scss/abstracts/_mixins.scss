@@ -1,0 +1,83 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/*  ANIMATION MIXINS
+========================================== */
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+     -moz-transform: $transform;
+      -ms-transform: $transform;
+       -o-transform: $transform;
+          transform: $transform;
+}
+
+@mixin transition($transition) {
+  -webkit-transition: #{$transition};
+     -moz-transition: #{$transition};
+       -o-transition: #{$transition};
+          transition: #{$transition};
+}
+
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: #{$transition-delay};
+     -moz-transition-delay: #{$transition-delay};
+       -o-transition-delay: #{$transition-delay};
+          transition-delay: #{$transition-delay};
+}
+
+/*  MEDIA QUERY MIXINS
+========================================== */
+
+/// Small devices (landscape phones, 576px and up)
+@mixin for-phone-landscape-up {
+  @media (min-width: 576px) { @content; }
+}
+/// Medium devices (tablets, 768px and up)
+@mixin for-tablet-portrait-up {
+  @media (min-width: 769px) { @content; }
+}
+/// Large devices (desktops, 992px and up)
+@mixin for-tablet-landscape-up {
+  @media (min-width: 992px) { @content; }
+}
+/// X-Large devices (large desktops, 1200px and up)
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+/// XX-Large devices (larger desktops, 1400px and up)
+@mixin for-big-desktop-up {
+  @media (min-width: 1400px) { @content; }
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+

@@ -1,0 +1,192 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+@import
+  '../components/burger',
+  '../abstracts/variables',
+  '../abstracts/mixins',
+  '../base/base';
+
+
+/*  BURGER
+========================================== */
+
+.burger {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 4px;
+  z-index: 10;
+
+  span {
+    @include burger(30px, 3px, 6px, $white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -1.5px;
+  }
+
+  &.clicked {
+    span {
+      @include burger-to-cross;
+
+      &:before, &:after {
+        background-color: $gray;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+/*  MOBILE NAV
+========================================== */
+
+.navigation {
+  background-color: $white;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  height: 100%;
+  max-width: 515px;
+  width: 100%;
+  padding: 100px 40px 60px 40px;
+  overflow-y: auto;
+  @include transform(translateX(100%));
+  @include transition(transform .55s cubic-bezier(0.785, 0.135, 0.15, 0.86));
+
+  &.show {
+    @include transform(translateX(0px));
+
+    ul.main {
+      li {
+        @include transform(translateX(0px));
+        opacity: 1;
+
+        @for $i from 0 to 5 {
+          &:nth-child(#{$i}) {
+            transition-delay: $i * 0.25s;
+          }
+        }
+      }
+    }
+
+
+  }
+
+  @media (min-width: 667px) {
+    padding: 120px 90px 70px 90px;
+  }
+
+  ul.main {
+    padding-bottom: 150px;
+    padding-top: 150px;
+
+    list-style-type: none;
+
+    li {
+      margin-bottom: 20px;
+
+      transition-property: color;
+      transition-duration: 0.3s;
+      transition-timing-function: cubic-bezier(0.26, 1.04, 0.54, 1);
+      transition-delay: 0s;
+
+      &:last-of-type {
+        margin-bottom: 0px;
+      }
+
+      a {
+        color: $gray;
+        font-family: $helvetica-bold;
+        text-decoration: none;
+        font-size: 2rem;
+        display: block;
+        letter-spacing: 1px;
+        font-weight: 600;
+        padding: 10px 0;
+        @include transition(all 1.3s ease);
+      }
+    }
+  }
+}
+
+/*  MAIN NAV
+========================================== */
+
+.main-nav {
+  text-decoration: none;
+  padding: 0 30px 0 30px;
+}
+
+.nav-container {
+  @include for-tablet-portrait-up {
+    display: none;
+  }
+}
+
+// for-tablet-portrait-down
+@media (max-width: 768px) { 
+  .main-nav {
+    display: none;
+  } 
+}
+
+/*  MAIN NAV LINK HOVER
+========================================== */
+
+.mainMenu li:not(:last-of-type) {
+  margin-right: 15px;
+}
+
+.mainMenu li > a {
+  padding: 0 !important;
+  font-family: $helvetica;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: $white;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  
+}
+
+.mainMenu li > a::before {
+  position: absolute;
+  content: "";
+  width: calc(100% - 1px);
+  height: 2.2px;
+  background: $white;
+  bottom: -3px;
+  left: 0;
+
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  z-index: -1;
+
+  -webkit-transition: all 0.4s ease-out 0s;
+  transition: all 0.4s ease-out 0s;
+}
+
+.mainMenu li > a:hover::before,
+.mainMenu li > a.active::before {
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+}

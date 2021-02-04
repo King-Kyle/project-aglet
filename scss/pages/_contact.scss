@@ -1,0 +1,90 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the contact page.
+// -----------------------------------------------------------------------------
+
+@import
+'../abstracts/variables',
+'../abstracts/mixins';
+
+
+#contact-body {
+  padding-top: 0 !important;
+  background-image: url('../media/contact/contact-image.jpg');
+  background-color: $black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  @include for-tablet-landscape-up {
+    padding-top: 60px;
+    background-size: 40% 90%;
+    background-position: 10% bottom;
+  }
+}
+
+.hello {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 128px;
+  font-family: $helvetica-bold;
+  @include for-tablet-landscape-up {
+    margin-top: 10vh;
+    font-size: 192px;
+  }
+  @include for-desktop-up {
+    margin-right: 40px;
+    margin-top: 6vh;
+    font-size: 224px;
+  }
+  @include for-big-desktop-up {
+    margin-top: 12vh;
+  }
+}
+
+.contact-about {
+  text-align: center;
+  margin: 0 20px 0 20px;
+  @include for-tablet-portrait-up {
+    margin-bottom: 60px;  
+  }
+  @include for-tablet-landscape-up {
+    position: absolute;
+    left: 65%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+  }
+  @include for-desktop-up {
+    top: 70%;
+  }
+}
+
+p {
+  color: $white;
+  font-family: $helvetica;
+  @include for-tablet-landscape-up {
+    color: $light-gray;
+  }
+}
+
+span {
+  color: $white;
+  font-family: $helvetica-bold;
+}
+
+#share {
+  font-family: $helvetica;
+  color: $white;
+  @include for-tablet-landscape-up {
+    color: gray;
+  }
+}
+
+a {
+  color: $white;
+  .social {
+    margin-left: 15px;
+  }
+  @include for-tablet-landscape-up {
+    color: $light-gray;
+  }
+}
