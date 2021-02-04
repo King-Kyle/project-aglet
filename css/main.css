@@ -580,6 +580,14 @@ body.overflow {
     width: 0px;
   }
 }
+.slider:hover .video {
+  -webkit-filter: brightness(30%);
+}
+
+.slider .video:hover {
+  -webkit-filter: brightness(99%);
+}
+
 @font-face {
   font-family: "Helvetica";
   src: url("fonts/Helvetica.ttf") format("truetype");

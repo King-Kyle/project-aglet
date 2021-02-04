@@ -148,3 +148,11 @@
     display: none; height: 0px; width: 0px; 
   }
 }
+
+.slider:hover .video {
+	-webkit-filter:brightness(30%);
+ }
+
+.slider .video:hover {
+	-webkit-filter:brightness(99%);
+}
